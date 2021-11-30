@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:52:11 by vahemere          #+#    #+#             */
-/*   Updated: 2021/11/30 05:20:12 by vahemere         ###   ########.fr       */
+/*   Updated: 2021/11/30 20:34:51 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,17 @@ char    *get_next_line(int fd)
 	char 		buff[BUFFER_SIZE + 1];
 	int			c;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)			//check erreur
 		return (NULL);
 	if (!pos_buff)
-		pos_buff = ft_strdup("");
-	while (!ft_strchr(pos_buff, '\n'))
+		pos_buff = ft_strdup("");				// Initialisation obliger pour la boucle, pos_buff est une chaine vide
+	while (!ft_strchr(pos_buff, '\n'))			// Tant que on ne trouve pas le '\n' dans pos_buff
 	{
-		c = read(fd, buff, BUFFER_SIZE);
-		if (c <= 0)
+		c = read(fd, buff, BUFFER_SIZE);		// c = nb octet de la fonction read en fonction de son BUFFER_SIZE
+		if (c <= 0)								// Si c <= 0, on a plus rien a parcourir. ou < 0 en cas d'erreur.
 			break ;
-		buff[c] = '\0';
-		pos_buff = ft_strjoin(pos_buff, buff);
+		buff[c] = '\0';							// On met le '\0'
+		pos_buff = ft_strjoin(pos_buff, buff);	// Pos_buff -> join avec buff (ex premier tour : |pos_buff ""|buff "Salut ca va?"| --> pos_buff = "Salut ca va?")
 		//pos_buff = ft_strdup(tmp);
 	}
 	pos_buff = cut_str(pos_buff, &str);
@@ -81,7 +81,8 @@ char    *get_next_line(int fd)
 int main(int ac, char *av[])
 {
 	int fd;
-	int num = 2;
+	int num = 200;
+	int	i = 1;
 	char *str =NULL;
 	fd = open(av[1], O_RDONLY);
 	if (ac != 2 || fd < 0)
@@ -89,8 +90,9 @@ int main(int ac, char *av[])
 	while (num)
 	{
 		str = get_next_line(fd);
-		printf("[%s]\n", str);
+		printf("line.%i\t\t%s\n", i, str);
 		num--;
+		i++;
 	}
 		
 	return (0);
