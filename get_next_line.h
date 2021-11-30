@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:52:14 by vahemere          #+#    #+#             */
-/*   Updated: 2021/11/28 18:51:02 by vahemere         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:01:48 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@
 # include <stdlib.h>
 
 char    *get_next_line(int fd);
-char	*copystr(char *nws, const char *s1, const char *s2, unsigned int len);
-char	*ft_strjoin(const char *s1, const char *s2);
+char	*copystr(char *nws, char *s1,  char *s2, unsigned int len);
+char	*ft_strjoin( char *s1,  char *s2);
+char	*ft_strchr(char *s, int c);
+char	*ft_strdup( char *s);
+size_t	ft_strlen(char *s);
+char	*ft_substr(char  *s, unsigned int start, size_t len);
 
 #endif
