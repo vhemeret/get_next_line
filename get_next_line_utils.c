@@ -6,13 +6,13 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:51:59 by vahemere          #+#    #+#             */
-/*   Updated: 2021/11/30 02:01:31 by vahemere         ###   ########.fr       */
+/*   Updated: 2021/12/03 00:10:03 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*copystr(char *nws,  char *s1,  char *s2, unsigned int len)
+char	*copystr(char *nws, char *s1, char *s2, unsigned int len)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -28,10 +28,10 @@ char	*copystr(char *nws,  char *s1,  char *s2, unsigned int len)
 	return (nws);
 }
 
-char	*ft_strjoin( char *s1,  char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char            *nws;
-	unsigned int    len;
+	char			*nws;
+	unsigned int	len;
 
 	if (!s2)
 		return (ft_strdup(s1));
@@ -58,7 +58,7 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strdup( char *s)
+char	*ft_strdup(char *s)
 {
 	size_t	s_len;
 	size_t	i;
@@ -75,18 +75,7 @@ char	*ft_strdup( char *s)
 	return (dst);
 }
 
-
-size_t	ft_strlen( char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_substr(char  *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	char	*dest;
 	size_t	i;
@@ -109,5 +98,3 @@ char	*ft_substr(char  *s, unsigned int start, size_t len)
 	dest[i] = '\0';
 	return (dest);
 }
-
-
