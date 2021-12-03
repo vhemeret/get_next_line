@@ -6,14 +6,11 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:52:11 by vahemere          #+#    #+#             */
-/*   Updated: 2021/12/03 00:15:20 by vahemere         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:56:21 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <string.h>
-#include <fcntl.h>
 
 size_t	ft_strlen( char *s)
 {
@@ -82,22 +79,23 @@ char	*get_next_line(int fd)
 	return (str);
 }
 
-/*int main(int ac, char *av[])
+#include <fcntl.h>
+#include <stdio.h>
+int main(int ac, char *av[])
 {
 	int fd;
-	int num = 1000;
+	int num =5011;
 	int	i = 1;
-	char *str =NULL;
+	// char *str =NULL;
 	fd = open(av[1], O_RDONLY);
 	if (ac != 2 || fd < 0)
 		return (1);
 	while (num)
+	// while ((str = get_next_line(fd)) != NULL)
 	{
-		str = get_next_line(fd);
-		printf("line.%i\t\t%s", i, str);
+		printf("%s", get_next_line(fd));
 		num--;
 		i++;
 	}
-		
 	return (0);
-}*/
+}
