@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:52:11 by vahemere          #+#    #+#             */
-/*   Updated: 2021/12/03 14:56:21 by vahemere         ###   ########.fr       */
+/*   Updated: 2021/12/05 22:57:50 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*cut_str(char *pos_buff, char **str)
 		tmp = ft_substr(pos_buff, i + 1, ft_strlen(pos_buff) - (i + 1));
 		if (!tmp)
 			return (freebuff(pos_buff));
+		free(pos_buff);
 		pos_buff = tmp;
 	}
 	else
@@ -55,6 +56,7 @@ char	*cut_str(char *pos_buff, char **str)
 char	*get_next_line(int fd)
 {
 	char		*str;
+	char		*tmp;
 	static char	*pos_buff = NULL;
 	char		*buff;
 	int			c;
@@ -70,21 +72,21 @@ char	*get_next_line(int fd)
 		c = read(fd, buff, BUFFER_SIZE);
 		if (c <= 0)
 			break ;
-		else if (c <= 0 && !ft_strchr(pos_buff, '\n'))
-			return (NULL);
 		buff[c] = '\0';
+		tmp = pos_buff;
 		pos_buff = ft_strjoin(pos_buff, buff);
+		free(tmp);
 	}
 	pos_buff = cut_str(pos_buff, &str);
 	return (str);
 }
 
-#include <fcntl.h>
+/*#include <fcntl.h>
 #include <stdio.h>
 int main(int ac, char *av[])
 {
 	int fd;
-	int num =5011;
+	int num = 104;
 	int	i = 1;
 	// char *str =NULL;
 	fd = open(av[1], O_RDONLY);
@@ -98,4 +100,4 @@ int main(int ac, char *av[])
 		i++;
 	}
 	return (0);
-}
+}*/
