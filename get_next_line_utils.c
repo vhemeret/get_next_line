@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:51:59 by vahemere          #+#    #+#             */
-/*   Updated: 2021/12/05 22:47:38 by vahemere         ###   ########.fr       */
+/*   Updated: 2021/12/06 13:10:38 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	char			*nws;
 	unsigned int	len;
 
-	if (!s2)
-		return (ft_strdup(s1));
 	if (!s1)
 		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
 	len = ft_strlen(s1) + ft_strlen(s2);
 	nws = malloc(sizeof(char) * (len + 1));
 	if (!nws)
@@ -50,6 +50,8 @@ char	*ft_strchr(char *s, int c)
 	size_t	i;
 	char	*str;
 
+	if (!s)
+		return NULL;
 	i = -1;
 	str = (char *)s;
 	while (++i <= ft_strlen(s))
@@ -64,6 +66,8 @@ char	*ft_strdup(char *s)
 	size_t	i;
 	char	*dst;
 
+	if (!s)
+		return NULL;
 	s_len = ft_strlen(s);
 	dst = malloc(sizeof(char) * (s_len + 1));
 	if (!dst)
