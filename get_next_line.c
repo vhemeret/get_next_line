@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:52:11 by vahemere          #+#    #+#             */
-/*   Updated: 2021/12/06 13:13:46 by vahemere         ###   ########.fr       */
+/*   Updated: 2021/12/07 20:24:26 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ char	*get_next_line(int fd)
 	char		*buff;
 	int			c;
 
-	str = NULL;
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (fd < 0 || BUFFER_SIZE <= 0 || buff == NULL)
 		return (freebuff(buff));
@@ -70,14 +69,14 @@ char	*get_next_line(int fd)
 	{
 		c = read(fd, buff, BUFFER_SIZE);
 		if (c == -1)
-			return freebuff(buff);
+			return (freebuff(buff));
 		else if (c == 0)
 		{
 			freebuff(buff);
 			str = ft_strdup(pos_buff);
 			free(pos_buff);
-			pos_buff = NULL;
-			return str;
+			pos_buff = (NULL);
+			return (str);
 		}
 		buff[c] = '\0';
 		tmp = pos_buff;
@@ -90,14 +89,12 @@ char	*get_next_line(int fd)
 }
 
 /*
-#ifdef TEST
-
 #include <fcntl.h>
 #include <stdio.h>
-int main(int ac, char *av[])
+int main(int ac, char **av)
 {
 	int fd;
-	int num = 104;
+	int num = 118;
 	int	i = 1;
 	// char *str =NULL;
 	fd = open(av[1], O_RDONLY);
@@ -115,5 +112,4 @@ int main(int ac, char *av[])
 	}
 	return (0);
 }
-#endif
 */

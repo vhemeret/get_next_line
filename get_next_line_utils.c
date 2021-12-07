@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:51:59 by vahemere          #+#    #+#             */
-/*   Updated: 2021/12/06 13:10:38 by vahemere         ###   ########.fr       */
+/*   Updated: 2021/12/07 20:24:32 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*copystr(char *nws, char *s1, char *s2, unsigned int len)
 	unsigned int	j;
 
 	i = -1;
-	while (++i < ft_strlen(s1))
+	while (++i < s1_len)
 		nws[i] = s1[i];
 	i -= 1;
 	j = 0;
@@ -48,13 +48,17 @@ char	*ft_strjoin(char *s1, char *s2)
 char	*ft_strchr(char *s, int c)
 {
 	size_t	i;
+	size_t	len;
 	char	*str;
 
 	if (!s)
-		return NULL;
+		return (NULL);
+	len = 0;
+	while (s[len])
+		len++;
 	i = -1;
 	str = (char *)s;
-	while (++i <= ft_strlen(s))
+	while (++i <= len)
 		if (str[i] == (char)c)
 			return (&str[i]);
 	return (NULL);
@@ -67,7 +71,7 @@ char	*ft_strdup(char *s)
 	char	*dst;
 
 	if (!s)
-		return NULL;
+		return (NULL);
 	s_len = ft_strlen(s);
 	dst = malloc(sizeof(char) * (s_len + 1));
 	if (!dst)
