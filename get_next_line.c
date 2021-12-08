@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:52:11 by vahemere          #+#    #+#             */
-/*   Updated: 2021/12/08 12:02:09 by vahemere         ###   ########.fr       */
+/*   Updated: 2021/12/08 14:31:29 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,28 +91,3 @@ char	*get_next_line(int fd)
 	pos_buff = cut_str(pos_buff, &str);
 	return (str);
 }
-
-/*#include <fcntl.h>
-#include <stdio.h>
-int main(int ac, char **av)
-{
-	int fd;
-	int num = 118;
-	int	i = 1;
-	// char *str =NULL;
-	fd = open(av[1], O_RDONLY);
-	if (ac != 2 || fd < 0)
-		return (1);
-
-	while (num)
-	// while ((str = get_next_line(fd)) != NULL)
-	{
-		char *str = get_next_line(fd);
-		printf("=>'%s'", str);
-		free(str);
-		num--;
-		i++;
-	}
-	return (0);
-}
-*/
