@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:52:11 by vahemere          #+#    #+#             */
-/*   Updated: 2021/12/07 20:24:26 by vahemere         ###   ########.fr       */
+/*   Updated: 2021/12/08 12:02:09 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,15 @@ char	*cut_str(char *pos_buff, char **str)
 	return (pos_buff);
 }
 
+char	*check_read(char *str, char **pos_buff, char **buff)
+{
+	freebuff(*buff);
+	str = ft_strdup(*pos_buff);
+	free(*pos_buff);
+	*pos_buff = NULL;
+	return (str);
+}
+
 char	*get_next_line(int fd)
 {
 	char		*str;
@@ -62,6 +71,7 @@ char	*get_next_line(int fd)
 	char		*buff;
 	int			c;
 
+	str = NULL;
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (fd < 0 || BUFFER_SIZE <= 0 || buff == NULL)
 		return (freebuff(buff));
@@ -71,13 +81,7 @@ char	*get_next_line(int fd)
 		if (c == -1)
 			return (freebuff(buff));
 		else if (c == 0)
-		{
-			freebuff(buff);
-			str = ft_strdup(pos_buff);
-			free(pos_buff);
-			pos_buff = (NULL);
-			return (str);
-		}
+			return (check_read(str, &pos_buff, &buff));
 		buff[c] = '\0';
 		tmp = pos_buff;
 		pos_buff = ft_strjoin(pos_buff, buff);
@@ -88,8 +92,7 @@ char	*get_next_line(int fd)
 	return (str);
 }
 
-/*
-#include <fcntl.h>
+/*#include <fcntl.h>
 #include <stdio.h>
 int main(int ac, char **av)
 {

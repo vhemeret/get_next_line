@@ -6,42 +6,37 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 16:51:59 by vahemere          #+#    #+#             */
-/*   Updated: 2021/12/07 20:24:32 by vahemere         ###   ########.fr       */
+/*   Updated: 2021/12/08 12:02:10 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*copystr(char *nws, char *s1, char *s2, unsigned int len)
-{
-	unsigned int	i;
-	unsigned int	j;
-
-	i = -1;
-	while (++i < s1_len)
-		nws[i] = s1[i];
-	i -= 1;
-	j = 0;
-	while (++i < len)
-		nws[i] = s2[j++];
-	nws[i] = '\0';
-	return (nws);
-}
-
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char			*nws;
 	unsigned int	len;
+	unsigned int	s1_l;
+	unsigned int	s2_l;
+	unsigned int	i;
 
 	if (!s1)
 		return (ft_strdup(s2));
 	if (!s2)
 		return (ft_strdup(s1));
-	len = ft_strlen(s1) + ft_strlen(s2);
+	i = -1;
+	s1_l = ft_strlen(s1);
+	s2_l = ft_strlen(s2);
+	len = s1_l + s2_l;
 	nws = malloc(sizeof(char) * (len + 1));
 	if (!nws)
 		return (NULL);
-	nws = copystr(nws, s1, s2, len);
+	while (++i < s1_l)
+		nws[i] = s1[i];
+	i -= 1;
+	while (++i < len)
+		nws[i] = *s2++;
+	nws[i] = '\0';
 	return (nws);
 }
 
